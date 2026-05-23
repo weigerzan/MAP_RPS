@@ -1,0 +1,4 @@
+CUDA_VISIBLE_DEVICES=4 python main.py --ni --config ffhq.yml --timesteps 1000 --deg sr4 --sigma_0 0.1 -i ablation/t_0/sr4_0.1/map_ps/500 --algo map_ps --xi 1.0 --optimize_iters 300 --vae_lr 0.5 --w_prior 0.25 --noise_t 10 --renoise_t 500
+CUDA_VISIBLE_DEVICES=4 python main.py --ni --config ffhq.yml --timesteps 1000 --deg sr4 --sigma_0 0.1 -i ablation/t_0/sr4_0.1/map_ps/700 --algo map_ps --xi 1.0 --optimize_iters 300 --vae_lr 0.5 --w_prior 0.25 --noise_t 10 --renoise_t 700
+CUDA_VISIBLE_DEVICES=4 python main.py --ni --config ffhq.yml --timesteps 1000 --deg sr4 --sigma_0 0.1 -i ablation/t_0/sr4_0.1/map_ps/900 --algo map_ps --xi 1.0 --optimize_iters 300 --vae_lr 0.5 --w_prior 0.25 --noise_t 10 --renoise_t 900
+CUDA_VISIBLE_DEVICES=4 python main.py --ni --config ffhq.yml --timesteps 1000 --deg sr4 --sigma_0 0.1 -i ablation/t_0/sr4_0.1/map_ps/1000 --algo map_ps --xi 1.0 --optimize_iters 300 --vae_lr 0.5 --w_prior 0.25 --noise_t 10 --renoise_t 1000

@@ -1,0 +1,42 @@
+{
+    "vsdps_lam1.0": {
+        "best_params": {
+            "lam": 1.0,
+            "xi": 15.0,
+            "timesteps": 1000
+        },
+        "best_psnr": 24.61
+    },
+    "vsdps_lam0.7": {
+        "best_params": {
+            "lam": 0.7,
+            "xi": 15.0,
+            "timesteps": 1000
+        },
+        "best_psnr": 24.44
+    },
+    "vsdps_lam0.5": {
+        "best_params": {
+            "lam": 0.5,
+            "xi": 10.0,
+            "timesteps": 1000
+        },
+        "best_psnr": 24.44
+    },
+    "vsdps_lam0.3": {
+        "best_params": {
+            "lam": 0.3,
+            "xi": 15.0,
+            "timesteps": 1000
+        },
+        "best_psnr": 24.48
+    },
+    "vsdps_lam0.0": {
+        "best_params": {
+            "lam": 0.0,
+            "xi": 20.0,
+            "timesteps": 1000
+        },
+        "best_psnr": 24.55
+    }
+}

@@ -1,0 +1,182 @@
+{
+    "dps_s_900": {
+        "best_params": {
+            "lam": 1.0,
+            "xi": 6.0,
+            "timesteps": 900
+        },
+        "best_psnr": 34.32
+    },
+    "dps_s_800": {
+        "best_params": {
+            "lam": 1.0,
+            "xi": 7.0,
+            "timesteps": 800
+        },
+        "best_psnr": 34.44
+    },
+    "dps_s_700": {
+        "best_params": {
+            "lam": 1.0,
+            "xi": 7.0,
+            "timesteps": 700
+        },
+        "best_psnr": 34.29
+    },
+    "dps_s_600": {
+        "best_params": {
+            "lam": 1.0,
+            "xi": 8.0,
+            "timesteps": 600
+        },
+        "best_psnr": 33.99
+    },
+    "dps_s_500": {
+        "best_params": {
+            "lam": 1.0,
+            "xi": 10.0,
+            "timesteps": 500
+        },
+        "best_psnr": 33.63
+    },
+    "dps_s_400": {
+        "best_params": {
+            "lam": 1.0,
+            "xi": 9.0,
+            "timesteps": 400
+        },
+        "best_psnr": 33.05
+    },
+    "dps_s_300": {
+        "best_params": {
+            "lam": 1.0,
+            "xi": 11.0,
+            "timesteps": 300
+        },
+        "best_psnr": 32.18
+    },
+    "dps_s_200": {
+        "best_params": {
+            "lam": 1.0,
+            "xi": 15.0,
+            "timesteps": 200
+        },
+        "best_psnr": 30.87
+    },
+    "dps_s_100": {
+        "best_params": {
+            "lam": 1.0,
+            "xi": 18.0,
+            "timesteps": 100
+        },
+        "best_psnr": 28.85
+    },
+    "map_ps_s_900": {
+        "best_params": {
+            "xi": 5.0,
+            "optimize_iters": 200,
+            "vae_lr": 0.5,
+            "w_prior": 0.01,
+            "noise_t": 10,
+            "renoise_t": 75,
+            "timesteps": 900
+        },
+        "best_psnr": 34.67
+    },
+    "map_ps_s_800": {
+        "best_params": {
+            "xi": 5.0,
+            "optimize_iters": 200,
+            "vae_lr": 0.5,
+            "w_prior": 0.01,
+            "noise_t": 10,
+            "renoise_t": 75,
+            "timesteps": 800
+        },
+        "best_psnr": 34.78
+    },
+    "map_ps_s_700": {
+        "best_params": {
+            "xi": 6.0,
+            "optimize_iters": 200,
+            "vae_lr": 0.5,
+            "w_prior": 0.01,
+            "noise_t": 10,
+            "renoise_t": 75,
+            "timesteps": 700
+        },
+        "best_psnr": 34.83
+    },
+    "map_ps_s_600": {
+        "best_params": {
+            "xi": 6.0,
+            "optimize_iters": 200,
+            "vae_lr": 0.5,
+            "w_prior": 0.01,
+            "noise_t": 10,
+            "renoise_t": 75,
+            "timesteps": 600
+        },
+        "best_psnr": 34.76
+    },
+    "map_ps_s_500": {
+        "best_params": {
+            "xi": 6.0,
+            "optimize_iters": 200,
+            "vae_lr": 0.5,
+            "w_prior": 0.01,
+            "noise_t": 10,
+            "renoise_t": 75,
+            "timesteps": 500
+        },
+        "best_psnr": 34.68
+    },
+    "map_ps_s_400": {
+        "best_params": {
+            "xi": 7.0,
+            "optimize_iters": 200,
+            "vae_lr": 0.5,
+            "w_prior": 0.01,
+            "noise_t": 10,
+            "renoise_t": 75,
+            "timesteps": 400
+        },
+        "best_psnr": 34.54
+    },
+    "map_ps_s_300": {
+        "best_params": {
+            "xi": 7.0,
+            "optimize_iters": 200,
+            "vae_lr": 0.5,
+            "w_prior": 0.01,
+            "noise_t": 10,
+            "renoise_t": 75,
+            "timesteps": 300
+        },
+        "best_psnr": 34.32
+    },
+    "map_ps_s_200": {
+        "best_params": {
+            "xi": 8.0,
+            "optimize_iters": 200,
+            "vae_lr": 0.5,
+            "w_prior": 0.01,
+            "noise_t": 10,
+            "renoise_t": 75,
+            "timesteps": 200
+        },
+        "best_psnr": 34.07
+    },
+    "map_ps_s_100": {
+        "best_params": {
+            "xi": 10.0,
+            "optimize_iters": 200,
+            "vae_lr": 0.5,
+            "w_prior": 0.01,
+            "noise_t": 10,
+            "renoise_t": 75,
+            "timesteps": 100
+        },
+        "best_psnr": 33.62
+    }
+}

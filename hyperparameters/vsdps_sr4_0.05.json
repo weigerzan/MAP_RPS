@@ -1,0 +1,90 @@
+{
+    "vsdps_lam1.0": {
+        "best_params": {
+            "lam": 1.0,
+            "xi": 8.5,
+            "timesteps": 1000
+        },
+        "best_psnr": 27.08
+    },
+    "vsdps_lam0.9": {
+        "best_params": {
+            "lam": 0.9,
+            "xi": 7.5,
+            "timesteps": 1000
+        },
+        "best_psnr": 27.04
+    },
+    "vsdps_lam0.8": {
+        "best_params": {
+            "lam": 0.8,
+            "xi": 8.0,
+            "timesteps": 1000
+        },
+        "best_psnr": 27.02
+    },
+    "vsdps_lam0.7": {
+        "best_params": {
+            "lam": 0.7,
+            "xi": 7.5,
+            "timesteps": 1000
+        },
+        "best_psnr": 26.97
+    },
+    "vsdps_lam0.6": {
+        "best_params": {
+            "lam": 0.6,
+            "xi": 7.0,
+            "timesteps": 1000
+        },
+        "best_psnr": 26.96
+    },
+    "vsdps_lam0.5": {
+        "best_params": {
+            "lam": 0.5,
+            "xi": 7.0,
+            "timesteps": 1000
+        },
+        "best_psnr": 26.72
+    },
+    "vsdps_lam0.4": {
+        "best_params": {
+            "lam": 0.4,
+            "xi": 8.5,
+            "timesteps": 1000
+        },
+        "best_psnr": 27.04
+    },
+    "vsdps_lam0.3": {
+        "best_params": {
+            "lam": 0.3,
+            "xi": 8.5,
+            "timesteps": 1000
+        },
+        "best_psnr": 27.09
+    },
+    "vsdps_lam0.2": {
+        "best_params": {
+            "lam": 0.2,
+            "xi": 6.5,
+            "timesteps": 1000
+        },
+        "best_psnr": 26.81
+    },
+    "vsdps_lam0.1": {
+        "best_params": {
+            "lam": 0.1,
+            "xi": 10.0,
+            "timesteps": 1000
+        },
+        "best_psnr": 26.91
+    },
+    "vsdps_lam0.0": {
+        "best_params": {
+            "lam": 0.0,
+            "xi": 9.0,
+            "timesteps": 1000
+        },
+        "best_psnr": 26.95
+    }
+}
