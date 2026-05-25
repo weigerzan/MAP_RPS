@@ -41,10 +41,10 @@ We use 100 test images from FFHQ and 100 test images from MS-COCO.
 
 The FFHQ dataset can be downloaded from the [official FFHQ repository](https://github.com/NVlabs/ffhq-dataset).
 
-In our experiments, we randomly sample 100 images from the `00000` folder. We also provide our sampled subset at:
+In our experiments, we randomly sample 100 images. We also provide our sampled subset at:
 
 ```text
-TODO: add FFHQ subset link
+https://drive.google.com/file/d/1e_e_sVsuuS_PH80c_8xsw5JO3bZ95tZZ/view?usp=sharing
 ```
 
 Please place the FFHQ test images under:
@@ -58,7 +58,7 @@ exp/datasets/ffhq/0
 We provide the MS-COCO test subset used in our experiments at:
 
 ```text
-TODO: add MS-COCO subset link
+https://drive.google.com/file/d/1NntxwMuPR_BTKp11yeBykea9DOBlQ1i9/view?usp=sharing
 ```
 
 Please place the MS-COCO test images under:
@@ -74,8 +74,7 @@ exp
 └── datasets
     ├── ffhq
     │   └── 0
-    │       ├── 0000.png
-    │       ├── 0001.png
+    │       ├── 00017.png
     │       └── ...
     └── coco
         ├── metadata.csv
@@ -178,6 +177,8 @@ bash scripts/<SCRIPT_NAME>.sh
 ```
 
 Please check the corresponding script for the task-specific configuration, degradation type, and hyperparameters.
+
+A simple example of computing evaluation metrics can be found in the `calculate_metrics/` directory.
 
 ## Citation
 

@@ -155,7 +155,7 @@ def get_dataset(args, config):
 
     elif config.data.dataset == 'coco':
         from datasets.cocoval import CocoVal100
-        dataset = CocoVal100(data_root=os.path.join(args.exp, "datasets", "coco_100_for_inversion_512"))
+        dataset = CocoVal100(data_root=os.path.join(args.exp, "datasets", "coco"))
         test_dataset = dataset
 
     elif config.data.dataset == "CelebA_HQ":
