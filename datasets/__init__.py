@@ -153,6 +153,11 @@ def get_dataset(args, config):
         else:
             test_dataset = None
 
+    elif config.data.dataset == 'coco':
+        from datasets.cocoval import CocoVal100
+        dataset = CocoVal100(data_root=os.path.join(args.exp, "datasets", "coco_100_for_inversion_512"))
+        test_dataset = dataset
+
     elif config.data.dataset == "CelebA_HQ":
         if config.data.out_of_dist:
             dataset = torchvision.datasets.ImageFolder(
@@ -169,10 +174,6 @@ def get_dataset(args, config):
             )
             num_items = len(dataset)
             indices = list(range(num_items))
-            # random_state = np.random.get_state()
-            # np.random.seed(2019)
-            # np.random.shuffle(indices)
-            # np.random.set_state(random_state)
             train_indices, test_indices = (
                 indices[: int(num_items * 0)],
                 indices[int(num_items * 0) :],
@@ -180,14 +181,8 @@ def get_dataset(args, config):
             test_dataset = Subset(dataset, test_indices)
 
     elif config.data.dataset == 'ImageNet':
-        # only use validation dataset here
-        
         if config.data.subset_1k:
             from datasets.imagenet_subset import ImageDataset
-            # dataset = ImageDataset(os.path.join(args.exp, 'datasets', 'imagenet', 'imagenet'),
-            #          os.path.join(args.exp, 'imagenet_val_1k.txt'),
-            #          image_size=config.data.image_size,
-            #          normalize=False)
             dataset = ImageDataset(os.path.join(args.exp, 'datasets', 'imagenet', 'val_new'),
                      os.path.join(args.exp, 'imagenet_val_1k.txt'),
                      image_size=config.data.image_size,

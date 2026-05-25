@@ -1,0 +1,5 @@
+python main.py --ni --config ffhq.yml --timesteps 1000 --deg deblur_aniso --sigma_0 0.0 -i ffhq/deblur_aniso_0.0/map_rps/0 --algo map_rps --lr 2.0 --optimize_iters 200 --vae_lr 0.5 --w_prior 0.01 --noise_t 10 --renoise_t 0
+python main.py --ni --config ffhq.yml --timesteps 1000 --deg deblur_aniso --sigma_0 0.0 -i ffhq/deblur_aniso_0.0/map_rps/25 --algo map_rps --lr 2.0 --optimize_iters 200 --vae_lr 0.5 --w_prior 0.01 --noise_t 10 --renoise_t 25
+python main.py --ni --config ffhq.yml --timesteps 1000 --deg deblur_aniso --sigma_0 0.0 -i ffhq/deblur_aniso_0.0/map_rps/50 --algo map_rps --lr 2.0 --optimize_iters 200 --vae_lr 0.5 --w_prior 0.01 --noise_t 10 --renoise_t 50
+python main.py --ni --config ffhq.yml --timesteps 1000 --deg deblur_aniso --sigma_0 0.0 -i ffhq/deblur_aniso_0.0/map_rps/75 --algo map_rps --lr 2.0 --optimize_iters 200 --vae_lr 0.5 --w_prior 0.01 --noise_t 10 --renoise_t 75
+python main.py --ni --config ffhq.yml --timesteps 1000 --deg deblur_aniso --sigma_0 0.0 -i ffhq/deblur_aniso_0.0/map_rps/100 --algo map_rps --lr 2.0 --optimize_iters 200 --vae_lr 0.5 --w_prior 0.01 --noise_t 10 --renoise_t 100

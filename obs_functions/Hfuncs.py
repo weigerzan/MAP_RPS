@@ -118,6 +118,9 @@ class H_functions:
     def is_linear(self):
         return True
 
+    def proj(self, x, y, alpha_obs=1.0):
+        return x + self.H_pinv(y - self.H(x)).view(y.shape[0], 3, x.shape[2], x.shape[3])
+
 #Inpainting
 class Inpainting(H_functions):
     def __init__(self, channels, img_dim, missing_indices, device):
@@ -213,7 +216,7 @@ class SuperResolution(H_functions):
         unfold_shape = patches.shape
         patches = patches.contiguous().reshape(vec.shape[0], self.channels, -1, self.ratio**2)
         #multiply each by the small V transposed
-        patches = torch.matmul(self.Vt_small, patches.reshape(-1, self.ratio**2, 1)).reshape(vec.shape[0], self.channels, -1, self.ratio**2)
+        patches = torch.matmul(self.Vt_small.to(vec.dtype), patches.reshape(-1, self.ratio**2, 1)).reshape(vec.shape[0], self.channels, -1, self.ratio**2)
         #reorder the vector to have the first entry first (because singulars are ordered descendingly)
         recon = torch.zeros(vec.shape[0], self.channels * self.img_dim**2, device=vec.device)
         recon[:, :self.channels * self.y_dim**2] = patches[:, :, :, 0].view(vec.shape[0], self.channels * self.y_dim**2)
@@ -495,8 +498,8 @@ class Deblurring2D(H_functions):
 
     def Vt(self, vec):
         #multiply the image by V^T from the left and by V from the right
-        temp = self.mat_by_img(self.V_small1.transpose(0, 1), vec.clone())
-        temp = self.img_by_mat(temp, self.V_small2).reshape(vec.shape[0], self.channels, -1)
+        temp = self.mat_by_img(self.V_small1.transpose(0, 1).to(vec.dtype), vec.clone())
+        temp = self.img_by_mat(temp, self.V_small2.to(vec.dtype)).reshape(vec.shape[0], self.channels, -1)
         #permute the entries according to the singular values
         temp = temp[:, :, self._perm].permute(0, 2, 1)
         return temp.reshape(vec.shape[0], -1)
@@ -697,3 +700,53 @@ class Colorization(H_functions):
         temp[:, :self.img_dim**2] = reshaped
         return temp
 
+
+class NonlinearBlurOperator(H_functions):
+    def __init__(self, device, opt_yml_path='./bkse/options/generate_blur/default.yml'):
+        self.device = device
+        self.blur_model = self.prepare_nonlinear_blur_model(opt_yml_path)
+        self.random_kernel = torch.randn(1, 512, 2, 2).to(self.device) * 1.2
+         
+    def prepare_nonlinear_blur_model(self, opt_yml_path):
+        '''
+        Nonlinear deblur requires external codes (bkse).
+        '''
+        from bkse.models.kernel_encoding.kernel_wizard import KernelWizard
+        with open(opt_yml_path, "r") as f:
+            opt = yaml.safe_load(f)["KernelWizard"]
+            model_path = opt["pretrained"]
+        blur_model = KernelWizard(opt)
+        blur_model.eval()
+        blur_model.load_state_dict(torch.load(model_path)) 
+        blur_model = blur_model.to(self.device)
+        return blur_model
+    
+    def forward(self, data, **kwargs):
+        image_width, image_height = data.shape[2], data.shape[3]
+        kernel = self.random_kernel.repeat(data.shape[0], 1, 1, 1)
+        data = (data + 1.0) / 2.0  #[-1, 1] -> [0, 1]
+        data = F.interpolate(
+            data,
+            size=(256, 256),
+            mode="bilinear",
+            align_corners=False
+        )
+        with torch.amp.autocast('cuda', dtype=data.dtype):
+            blurred = self.blur_model.adaptKernel(data, kernel=kernel)
+        blurred = F.interpolate(
+            blurred,
+            size=(image_width, image_height),
+            mode="bilinear",
+            align_corners=False
+        )
+        blurred = (blurred * 2.0 - 1.0).clamp(-1, 1) #[0, 1] -> [-1, 1]
+        return blurred
+
+    def H_pinv(self, x):
+        return x
+    
+    def is_linear(self):
+        return False
+        
+    def H(self, data, **kwargs):
+        return self.forward(data)

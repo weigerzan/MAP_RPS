@@ -7,30 +7,19 @@ import sys
 import os
 import torch
 import numpy as np
-import torch.utils.tensorboard as tb
-
-from ProjDiff_utils.diffusion_vsdps import Diffusion
-# from opt_gradient_utils.diffusion_opt import Diffusion
+from runners.diffusion import Diffusion
 
 torch.set_printoptions(sci_mode=False)
 
 
 def parse_args_and_config():
     parser = argparse.ArgumentParser(description=globals()["__doc__"])
-
     parser.add_argument(
         "--config", type=str, required=True, help="Path to the config file"
     )
     parser.add_argument("--seed", type=int, default=1234, help="Random seed")
     parser.add_argument(
         "--exp", type=str, default="exp", help="Path for saving running related data."
-    )
-    parser.add_argument(
-        "--doc",
-        type=str,
-        default="imagenet",
-        help="A string for documentation purpose. "
-        "Will be the name of the log folder.",
     )
     parser.add_argument(
         "--comment", type=str, default="", help="A string for experiment comment"
@@ -40,11 +29,6 @@ def parse_args_and_config():
         type=str,
         default="info",
         help="Verbose level: info | debug | warning | critical",
-    )
-    parser.add_argument(
-        "--sample",
-        action="store_true",
-        help="Whether to produce samples from the model",
     )
     parser.add_argument(
         "-i",
@@ -71,9 +55,6 @@ def parse_args_and_config():
         "--lr", type=float, default=1.0, help="Step-size"
     )
     parser.add_argument(
-        "--xi", type=float, default=10.0, help="Step-size"
-    )
-    parser.add_argument(
         "--lam", type=float, default=1.0, help="Step-size"
     )
     parser.add_argument(
@@ -84,6 +65,9 @@ def parse_args_and_config():
     )
     parser.add_argument(
         "--w_prior", type=float, default=2.0, help="Weight for prior term"
+    )
+    parser.add_argument(
+        "--eta_min", type=float, default=1e-5, help="Weight for prior term"
     )
     parser.add_argument(
         "--noise_t", type=int, default=10, help="Noise timestep"
@@ -97,17 +81,16 @@ def parse_args_and_config():
     parser.add_argument(
         "--algo",
         type=str,
-        default="vsdps",
+        default="map_rps",
         help="The folder name of samples",
     )
     parser.add_argument(
         "--ps_method",
         type=str,
         default="dps",
-        help="The folder name of samples",
     )
     parser.add_argument(
-        "--default_lr", action="store_true", help="Using the best step sizes to reproduce the results in the paper"
+        "--stable", action="store_true", help="Using stablized update in lmap_rps"
     )
     parser.add_argument(
         '--subset_start', type=int, default=-1
@@ -117,15 +100,10 @@ def parse_args_and_config():
     )
 
     args = parser.parse_args()
-    args.log_path = os.path.join(args.exp, "logs", args.doc)
-
     # parse config file
     with open(os.path.join("configs", args.config), "r") as f:
         config = yaml.safe_load(f)
     new_config = dict2namespace(config)
-
-    tb_path = os.path.join(args.exp, "tensorboard", args.doc)
-
     level = getattr(logging, args.verbose.upper(), None)
     if not isinstance(level, int):
         raise ValueError("level {} not supported".format(args.verbose))
@@ -192,7 +170,6 @@ def dict2namespace(config):
 
 def main():
     args, config = parse_args_and_config()
-    logging.info("Writing log file to {}".format(args.log_path))
     logging.info("Exp instance id = {}".format(os.getpid()))
     logging.info("Exp comment = {}".format(args.comment))
 

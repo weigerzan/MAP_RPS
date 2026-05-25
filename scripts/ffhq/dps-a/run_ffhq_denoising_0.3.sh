@@ -1,8 +1,0 @@
-CUDA_VISIBLE_DEVICES=3 python main.py --ni --config ffhq.yml --timesteps 1000 --deg denoise --sigma_0 0.3 -i ffhq/denoise_0.3/dps_a/2 --lam 1.0 --xi 1.0 --M 2
-CUDA_VISIBLE_DEVICES=3 python main.py --ni --config ffhq.yml --timesteps 1000 --deg denoise --sigma_0 0.3 -i ffhq/denoise_0.3/dps_a/4 --lam 1.0 --xi 1.0 --M 4
-CUDA_VISIBLE_DEVICES=3 python main.py --ni --config ffhq.yml --timesteps 1000 --deg denoise --sigma_0 0.3 -i ffhq/denoise_0.3/dps_a/8 --lam 1.0 --xi 1.0 --M 8
-CUDA_VISIBLE_DEVICES=3 python main.py --ni --config ffhq.yml --timesteps 1000 --deg denoise --sigma_0 0.3 -i ffhq/denoise_0.3/dps_a/16 --lam 1.0 --xi 1.0 --M 16
-CUDA_VISIBLE_DEVICES=3 python main.py --ni --config ffhq.yml --timesteps 1000 --deg denoise --sigma_0 0.3 -i ffhq/denoise_0.3/dps_a/32 --lam 1.0 --xi 1.0 --M 32
-
-
-CUDA_VISIBLE_DEVICES=5 python main.py --ni --config ffhq.yml --timesteps 1000 --deg denoise --sigma_0 0.3 -i ffhq/test_time --lam 1.0 --xi 1.0 --M 2
