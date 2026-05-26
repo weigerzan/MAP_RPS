@@ -101,7 +101,7 @@ class Diffusion(object):
         if self.config.model.type == 'ffhq_pixel':
             cls_fn = None
             from third_party.guided_diffusion.unet_ffhq import create_model as create_model_ffhq
-            model_config = load_yaml('configs/ffhq_model_config.yaml')
+            model_config = load_yaml('configs/ffhq_pixel/ffhq_model_config.yaml')
             model = create_model_ffhq(**model_config)
             model = model.to(self.device)
             model.eval()
@@ -221,7 +221,7 @@ class Diffusion(object):
             H_funcs = HDR()  
         elif deg == 'deblur_nonlinear':
             from obs_functions.Hfuncs import NonlinearBlurOperator
-            H_funcs = NonlinearBlurOperator(self.device, opt_yml_path='./bkse/options/generate_blur/default.yml')   
+            H_funcs = NonlinearBlurOperator(self.device, opt_yml_path='./third_party/bkse/options/generate_blur/default.yml')   
         else:
             print("ERROR: degradation type not supported")
             quit()

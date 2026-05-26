@@ -4,6 +4,7 @@ from .fastmri_utils import fft2c_new, ifft2c_new
 from torch.nn import functional as F
 import math
 import yaml
+import os
 
 def fft2_m(x):
   """ FFT for multi-coil """
@@ -702,7 +703,7 @@ class Colorization(H_functions):
 
 
 class NonlinearBlurOperator(H_functions):
-    def __init__(self, device, opt_yml_path='./bkse/options/generate_blur/default.yml'):
+    def __init__(self, device, opt_yml_path='./third_party/bkse/options/generate_blur/default.yml'):
         self.device = device
         self.blur_model = self.prepare_nonlinear_blur_model(opt_yml_path)
         self.random_kernel = torch.randn(1, 512, 2, 2).to(self.device) * 1.2
@@ -711,13 +712,13 @@ class NonlinearBlurOperator(H_functions):
         '''
         Nonlinear deblur requires external codes (bkse).
         '''
-        from bkse.models.kernel_encoding.kernel_wizard import KernelWizard
+        from third_party.bkse.models.kernel_encoding.kernel_wizard import KernelWizard
         with open(opt_yml_path, "r") as f:
             opt = yaml.safe_load(f)["KernelWizard"]
             model_path = opt["pretrained"]
         blur_model = KernelWizard(opt)
         blur_model.eval()
-        blur_model.load_state_dict(torch.load(model_path)) 
+        blur_model.load_state_dict(torch.load(os.path.join('third_party/bkse', model_path))) 
         blur_model = blur_model.to(self.device)
         return blur_model
     

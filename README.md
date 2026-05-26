@@ -22,14 +22,19 @@ conda env create -f environment.yml
 conda activate map_rps
 ```
 
-For text-to-image experiments based on Stable Diffusion, please additionally install `diffusers` and `transformers`:
+For text-to-image experiments based on Stable Diffusion, please additionally install `diffusers`, `transformers` and `accelerate`:
 
 ```bash
 pip install diffusers==0.35.2
-pip install transformers
+pip install transformers==4.40.2
+pip install accelerate
 ```
 
-For nonlinear deblurring, you may also need to install `bkse` following the instructions in the [DPS repository](https://github.com/DPS2022/diffusion-posterior-sampling).
+For nonlinear deblurring experiments, please additionally download the pretrained weights from [https://drive.google.com/file/d/1vRoDpIsrTRYZKsOMPNbPcMtFDpCT6Foy](https://drive.google.com/file/d/1vRoDpIsrTRYZKsOMPNbPcMtFDpCT6Foy) and place them under:
+
+```bash
+./third_party/bkse/experiments/pretrained
+```
 
 ## Datasets and Pretrained Models
 
