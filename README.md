@@ -15,7 +15,7 @@ We sincerely thank the authors for releasing their code.
 
 ## Environment Setup
 
-You can set up the environment using the provided `environment.yml`. The environment is mostly consistent with that of [DDRM](https://github.com/bahjat-kawar/ddrm).
+You can set up the environment using the provided `environment.yml`.
 
 ```bash
 conda env create -f environment.yml
