@@ -1,7 +1,6 @@
 model:
   type: 'sd15'
-  # model_id: "runwayml/stable-diffusion-v1-5"
-  model_id: "/nas/datasets/stable-diffusion-v1-5/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/"
+  model_id: "runwayml/stable-diffusion-v1-5"
 data:
     dataset: "coco"
     image_size: 512
